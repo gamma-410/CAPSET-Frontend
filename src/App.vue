@@ -61,11 +61,6 @@ export default {
 .align {
   align-items: center;
 }
-* :hover {
-  text-decoration: none;
-  border: none;
-  box-shadow: none;
-}
 .no-padding {
   padding-right: 0 !important;
   padding-left: 0 !important;
