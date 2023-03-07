@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import UserView from '../views/UserView.vue'
 import CreateView from '../views/CreateView.vue'
 import LiveView from '../views/LiveView.vue'
+import StudioView from '../views/StudioView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/home/lives/:id',
     name: 'lives',
     component: LiveView
+  },
+  {
+    path: '/home/studio',
+    name: 'studio',
+    component: StudioView
   },
 ]
 

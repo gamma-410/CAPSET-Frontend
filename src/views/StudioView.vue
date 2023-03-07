@@ -1,32 +1,34 @@
 <template>
-  <div class="user text-center pt-5 m-3">
-    <h3 class="mb-4" v-if="!loginData">ようこそ！</h3>
+  <div class="user pt-5 m-3">
+    <h3 class="mb-4" v-if="!loginData">まだログインしていません...</h3>
     <p class="mb-5" v-if="!loginData">
       サービスをお使いになる前にログインが必要です
     </p>
-    <button class="btn btn-dark" @click="loginWithGoogle()" v-if="!loginData">
-      Google でログイン
-    </button>
-
-    <div class="text-center pt-5" v-if="loginData">
-      <img
-        :src="'https://gravatar.com/avatar/' + md5 + '?s=120'"
-        class="rounded rounded-pill border mb-3"
-      />
-      <h4>{{ userData.displayName }}</h4>
-      <p class="mb-5">{{ userData.email }}</p>
-    </div>
-    <router-link to="/home/studio">
-      <button class="btn btn-dark mb-3" v-if="loginData">Creator Studio</button>
+    <router-link to="/home/user">
+      <button v-if="!loginData" class="btn btn-dark">ユーザーページへ</button>
     </router-link>
-    <br />
-    <button class="btn btn-dark" @click="logout()" v-if="loginData">
-      サインアウト
-    </button>
+
+    <div class="pt-5" v-if="loginData">
+      <h3 class="mb-5">Creator Studio</h3>
+      <h5 class="mb-4"><b>ライブ配信</b></h5>
+      <p class="mb-4">サーバーURL<br />rtmp://live.gamma410.win/live</p>
+      <p class="mb-5">ストリーミングキー<br />{{ md5 }}</p>
+      <br>
+      <h5 class="mb-4"><b>アイコンの変更</b></h5>
+      <p class="mb-4">
+        <a
+          href="https://gravatar.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Gravatarでアイコンを変更する</a
+        >
+      </p>
+      <p class="mb-4">あなたのメールアドレス<br />{{ userData.email }}</p>
+    </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 import firebase from "firebase/app";
 import forge from "node-forge";
 
