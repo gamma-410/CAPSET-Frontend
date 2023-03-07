@@ -1,5 +1,5 @@
 <template>
-  <div class="user pt-5 m-3">
+  <div class="user pt-2 m-3">
     <h3 class="mb-4" v-if="!loginData">まだログインしていません...</h3>
     <p class="mb-5" v-if="!loginData">
       サービスをお使いになる前にログインが必要です
