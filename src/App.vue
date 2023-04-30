@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-light bg-light">
       <div class="container align">
-        <router-link to="/home">
+        <router-link to="/">
           <span class="navbar-brand mb-0">
             <img src="../public/logo.svg" width="150" />
           </span>
