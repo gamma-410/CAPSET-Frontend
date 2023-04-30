@@ -7,7 +7,7 @@ import StudioView from '../views/StudioView.vue'
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: HomeView
   },
