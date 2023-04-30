@@ -1,20 +1,22 @@
 <template>
-  <div class="live">
-    <VideoPlayer
-      v-if="videoOptions.sources[0].src !== ''"
-      :options="videoOptions"
-    />
-    <div class="m-2">
-      <h4 class="mt-4">
-        <b>{{ title }}</b>
-      </h4>
-      <hr />
-      <p>
-        <b>{{ username }}</b>
-      </p>
-      <hr />
-      <p>作成日: {{ postdate }}</p>
-      <p>{{ detail }}</p>
+  <div class="container-fluid no-padding">
+    <div class="live">
+      <VideoPlayer
+        v-if="videoOptions.sources[0].src !== ''"
+        :options="videoOptions"
+      />
+      <div class="m-2">
+        <h4 class="mt-4">
+          <b>{{ title }}</b>
+        </h4>
+        <hr />
+        <p>
+          <b>{{ username }}</b>
+        </p>
+        <hr />
+        <p>作成日: {{ postdate }}</p>
+        <p>{{ detail }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -74,7 +76,23 @@ export default {
 
 <style>
 .video-js {
-  background: #183952;
+  background: linear-gradient(135deg, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(-45deg, #21d4fd, #b721ff);
+  background-image: repeating-linear-gradient(135deg, rgba(50, 101, 111, 1) 5%, rgba(0, 68, 91, 1) 15%);
+  background-size: 150% 150%;
+  animation-name: gradation;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+@keyframes gradation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }
 .video-js .vjs-menu-button-inline.vjs-slider-active,
 .video-js .vjs-menu-button-inline:focus,
@@ -207,5 +225,11 @@ video-js.vjs-ended .vjs-big-play-button,
 .vjs-poster,
 .video-js .vjs-tech {
   border-radius: 0px;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 800px;
 }
 </style>

@@ -9,13 +9,13 @@
         </router-link>
         <span class="mb-0 small">
           <div>
-            <router-link v-if="loginData" to="/home/create">
+            <router-link v-if="loginData" to="/create">
               <button class="btn btn-outline-dark">
                 <i class="bi bi-plus-circle"></i>
               </button>
             </router-link>
             &nbsp;
-            <router-link to="/home/user">
+            <router-link to="/user">
               <button class="btn btn-outline-dark">
                 <i class="bi bi-person-circle"></i>
               </button>
@@ -25,9 +25,7 @@
       </div>
     </nav>
 
-    <div class="container no-padding">
       <router-view></router-view>
-    </div>
   </div>
 </template>
 

@@ -1,28 +1,32 @@
 <template>
-  <div class="user text-center pt-5 m-3">
-    <h3 class="mb-4" v-if="!loginData">ようこそ！</h3>
-    <p class="mb-5" v-if="!loginData">
-      サービスをお使いになる前にログインが必要です
-    </p>
-    <button class="btn btn-dark" @click="loginWithGoogle()" v-if="!loginData">
-      Google でログイン
-    </button>
+  <div class="container no-padding">
+    <div class="user text-center pt-5 m-3">
+      <h3 class="mb-4" v-if="!loginData">Welcome !</h3>
+      <p class="mb-5" v-if="!loginData">
+        サービスをお使いになる前にログインが必要です
+      </p>
+      <button class="btn btn-dark" @click="loginWithGoogle()" v-if="!loginData">
+        Google でログイン
+      </button>
 
-    <div class="text-center pt-5" v-if="loginData">
-      <img
-        :src="'https://gravatar.com/avatar/' + md5 + '?s=120'"
-        class="rounded rounded-pill border mb-3"
-      />
-      <h4>{{ userData.displayName }}</h4>
-      <p class="mb-5">{{ userData.email }}</p>
+      <div class="text-center pt-5" v-if="loginData">
+        <img
+          :src="'https://gravatar.com/avatar/' + md5 + '?s=120'"
+          class="rounded rounded-pill border mb-3"
+        />
+        <h4>{{ userData.displayName }}</h4>
+        <p class="mb-5">{{ userData.email }}</p>
+      </div>
+      <router-link to="/studio">
+        <button class="btn btn-dark mb-3" v-if="loginData">
+          Creator Studio
+        </button>
+      </router-link>
+      <br />
+      <button class="btn btn-dark" @click="logout()" v-if="loginData">
+        サインアウト
+      </button>
     </div>
-    <router-link to="/home/studio">
-      <button class="btn btn-dark mb-3" v-if="loginData">Creator Studio</button>
-    </router-link>
-    <br />
-    <button class="btn btn-dark" @click="logout()" v-if="loginData">
-      サインアウト
-    </button>
   </div>
 </template>
 

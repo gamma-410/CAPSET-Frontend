@@ -1,22 +1,30 @@
 <template>
-  <div class="user pt-5 m-3">
-    <h4 class="mb-5">新規ライブを作成</h4>
-    <form @submit.prevent="createLive">
-      <div class="mb-3">
-        <label class="form-label">タイトル</label>
-        <input v-model="title" class="form-control" placeholder="タイトルを入力" />
-      </div>
-      <div class="mb-5">
-        <label class="form-label">概要</label>
-        <textarea
-          v-model="detail"
-          class="form-control"
-          rows="5"
-          placeholder="概要を入力"
-        ></textarea>
-      </div>
-      <button v-if="textLine" type="submit" class="btn btn-dark btn-block">これでライブを作成する！</button>
-    </form>
+  <div class="container no-padding">
+    <div class="user pt-5 m-3">
+      <h4 class="mb-5">新規ライブを作成</h4>
+      <form @submit.prevent="createLive">
+        <div class="mb-3">
+          <label class="form-label">タイトル</label>
+          <input
+            v-model="title"
+            class="form-control"
+            placeholder="タイトルを入力"
+          />
+        </div>
+        <div class="mb-5">
+          <label class="form-label">概要</label>
+          <textarea
+            v-model="detail"
+            class="form-control"
+            rows="5"
+            placeholder="概要を入力"
+          ></textarea>
+        </div>
+        <button v-if="textLine" type="submit" class="btn btn-dark btn-block">
+          これでライブを作成する！
+        </button>
+      </form>
+    </div>
   </div>
 </template>
   
@@ -36,12 +44,12 @@ export default {
   },
   watch: {
     title(newVal) {
-        if (newVal.length > 0) {
-            this.textLine = true;
-        } else {
-            this.textLine = false;
-        }
-    }
+      if (newVal.length > 0) {
+        this.textLine = true;
+      } else {
+        this.textLine = false;
+      }
+    },
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -74,7 +82,9 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          alert("ライブ配信を作成できませんでした...\n既にライブ配信を作成している場合は削除してからもう一度お試しください。");
+          alert(
+            "ライブ配信を作成できませんでした...\n既にライブ配信を作成している場合は削除してからもう一度お試しください。"
+          );
         });
     },
   },

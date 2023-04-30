@@ -1,43 +1,41 @@
 <template>
-  <div class="home m-3">
-
+  <div class="container no-padding">
     <div v-if="load" class="text-center mt-5 mb-5">
       <div class="spinner-border text-primary" role="status"></div>
     </div>
+    <div class="mt-5" style="text-align: center">
+      <h5 v-if="none">現在開催中のライブがありません...</h5>
+    </div>
+    <div class="home m-3">
+      <div v-for="post in posts" :key="post.id" class="flex-cont">
+        <router-link :to="'/lives/' + post.id">
+          <img
+            class="live-icon"
+            :src="'https://gravatar.com/avatar/' + post.email + '?s=500'"
+            :alt="post.email"
+          />
+        </router-link>
 
-    <div v-for="post in posts" :key="post.id" class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <router-link :to="'/home/lives/' + post.id">
-            <img
-              class="image border"
-              :src="'https://gravatar.com/avatar/' + post.email + '?s=500'"
-              :alt="post.email"
-            />
-          </router-link>
-        </div>
+        <div class="itemin">
+          <h5 class="card-title mt-2">
+            <b>{{ post.title }}</b>
+          </h5>
 
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title mt-2">
-              <b>{{ post.title }}</b>
-            </h5>
+          <p class="card-text">
+            <small class="text-muted">{{ post.username }}</small
+            ><br />
+            <small class="text-muted">{{ post.postdate }}</small>
+          </p>
 
-            <p class="card-text">
-              <small class="text-muted">{{ post.username }}</small
-              ><br />
-              <small class="text-muted">{{ post.postdate }}</small>
-            </p>
-            <form @submit.prevent="removeLive">
-              <button
-                v-if="post.username == userData.displayName"
-                class="btn btn-dark"
-                type="submit"
-              >
-                削除
-              </button>
-            </form>
-          </div>
+          <form @submit.prevent="removeLive">
+            <button
+              v-if="post.username == userData.displayName"
+              class="btn btn-dark"
+              type="submit"
+            >
+              削除
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -55,7 +53,8 @@ export default {
       userData: "",
       posts: [],
       md5: "",
-      load: true
+      load: true,
+      none: false,
     };
   },
   created() {
@@ -74,6 +73,9 @@ export default {
       .get("https://capset-backend-api.glitch.me/all")
       .then((response) => {
         this.posts = response.data;
+        if (this.posts.length == 0) {
+          this.none = true;
+        }
         this.load = false;
       })
       .catch((error) => {
@@ -110,13 +112,27 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
-.card {
-  width: 100%;
+.home::after {
+  content: "";
+  display: block;
+  width: 650px;
 }
-.image {
+
+.flex-cont {
+  border-radius: 10px;
+  box-shadow: 0px 1.5px 2px 1px #aaaaaa65;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  background: #f8f8f8;
+}
+.live-icon {
+  border-radius: 10px 10px 0px 0px;
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
+}
+.itemin {
+  margin: 10px;
 }
 </style>
