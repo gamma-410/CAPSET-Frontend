@@ -81,7 +81,7 @@ export default {
       .catch((error) => {
         console.error(error);
       });
-  },
+      },
   methods: {
     removeLive() {
       axios

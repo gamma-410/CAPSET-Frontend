@@ -56,7 +56,7 @@ export default {
       } else {
         this.loginData = false;
       }
-    });
+    }); 
   },
   methods: {
     async loginWithGoogle() {
